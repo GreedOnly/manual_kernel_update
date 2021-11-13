@@ -11,8 +11,13 @@ curl -sL https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant
 chmod 0600 /home/vagrant/.ssh/authorized_keys
 chown -R vagrant:vagrant /home/vagrant/.ssh
 
+# Remove kernel modules (\/Oo\/)
+rm -rf /usr/lib/modules/5.15.1/kernel/drivers/net/wireless/ #-595Mb
+rm -rf /usr/lib/modules/5.15.1/kernel/drivers/gpu/ #-1Gb
 
 # Remove temporary files
+rm -rf /home/vagrant/linux-5.15.1*
+rm -f /boot/*3.10*
 rm -rf /tmp/*
 rm  -f /var/log/wtmp /var/log/btmp
 rm -rf /var/cache/* /usr/share/doc/*
@@ -24,8 +29,7 @@ history -c
 rm -rf /run/log/journal/*
 
 # Fill zeros all empty space
-dd if=/dev/zero of=/EMPTY bs=1M
+dd if=/dev/zero of=/EMPTY bs=1M | true
 rm -f /EMPTY
 sync
-grub2-set-default 1
-echo "###   Hi from secone stage" >> /boot/grub2/grub.cfg
+/usr/sbin/grub2-set-default 1

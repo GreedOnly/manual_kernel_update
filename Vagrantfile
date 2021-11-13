@@ -5,9 +5,9 @@ MACHINES = {
               # VM box
               :box_name => "centos/7",
               # VM CPU count
-              :cpus => 2,
+              :cpus => 4,
               # VM RAM size (Mb)
-              :memory => 1024,
+              :memory => 4096,
               # networks
               :net => [],
               # forwarded ports
@@ -18,7 +18,7 @@ MACHINES = {
 Vagrant.configure("2") do |config|
   MACHINES.each do |boxname, boxconfig|
     # Disable shared folders
-    config.vm.synced_folder ".", "/vagrant", disabled: true
+    #config.vm.synced_folder ".", "/vagrant", disabled: true
     # Apply VM config
     config.vm.define boxname do |box|
       # Set VM base box and hostname
