@@ -40,7 +40,7 @@ Now, you have to choose Default or Custom:
 
 Build Default box:
 ```
-cd manual_kernel_update/packer && packer build centos-small.json
+cd manual_kernel_update/packer && packer build centos-default.json
 ```
 
 Build Custom box:
